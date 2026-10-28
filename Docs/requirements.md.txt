@@ -1,0 +1,21 @@
+# ThermoLoop Requirements (draft v0.1)
+
+## Goal
+Hold a small aluminum block at a chosen temperature and prove it with automated tests.
+
+## Targets
+- Set-point range: ambient to 80 °C
+- Steady-state error: within ±0.5 °C
+- Settling time: under [decide after the first test] seconds
+- Overshoot: under [decide after the first test] %
+- Telemetry: one reading over UART every 100 ms
+
+## Safety
+- Heater shuts off above 100 °C (second thermocouple as independent check)
+- Heater shuts off if a thermocouple is disconnected
+- Inline thermal fuse and a fuse on the 12 V input
+
+## How each target gets tested
+- Accuracy: ice bath (0 °C) and boiling water (about 100 °C)
+- Step response and stability: automated Python tests
+- Fault response: unplug a thermocouple and measure how fast the heater turns off
